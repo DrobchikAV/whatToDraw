@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: creative-generator
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: DATA_FILE
+        value: /app/data.txt
+    healthCheckPath: /api/health
+    autoDeploy: true
+
+  - type: pserv
+    name: creative-generator-db
+    plan: free
+    ipAllowList: []
+    disk:
+      name: data
+      mountPath: /var/lib/postgresql/data
+      sizeGB: 1

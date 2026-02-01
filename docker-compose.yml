@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://creative_user:creative_pass@db:5432/creative_db
+      - DATA_FILE=/app/data.txt
+    depends_on:
+      - db
+    volumes:
+      - ./app:/app/app
+      - ./tests:/app/tests
+      - ./static:/app/static
+      - ./templates:/app/templates
+      - ./data.txt:/app/data.txt
+
+  db:
+    image: postgres:15
+    environment:
+      - POSTGRES_USER=creative_user
+      - POSTGRES_PASSWORD=creative_pass
+      - POSTGRES_DB=creative_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:
