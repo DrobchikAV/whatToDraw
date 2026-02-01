@@ -3,9 +3,9 @@ from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from sqlalchemy.orm import Session
-import crud
-from database import engine, get_db, SessionLocal
-import models
+from app import crud
+from app.database import engine, get_db, SessionLocal
+from app import models
 from pydantic import BaseModel
 import requests
 import random

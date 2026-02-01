@@ -1,7 +1,7 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
 from sqlalchemy import func
-from app import models
+from . import models
 import random
 import os
 from dotenv import load_dotenv
